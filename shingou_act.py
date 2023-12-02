@@ -1,34 +1,25 @@
-from enum import Enum
+import sys
 
 
-class Shingou(Enum):
-    TOMARE = "とまれ"
-    SUSUME = "すすめ"
-    CHUUI = "ちゅうい"
+def shingou_action(color_code):
+    if color_code == 1:
+        return "「とまれ」"
+    elif color_code == 2:
+        return "「すすめ」"
+    elif color_code == 3:
+        return "「ちゅうい」"
+    else:
+        return "無効な色のコードです"
 
 
-def act_shingou(color):
-    try:
-        color = int(color)
-        if color == 1:
-            action = Shingou.TOMARE
-        elif color == 2:
-            action = Shingou.SUSUME
-        elif color == 3:
-            action = Shingou.CHUUI
-        else:
-            raise ValueError("信号機の色に対応していません")
-        
-        print(action.value)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("正しい引数がありません。色の数値を1つ指定してください。")
+    else:
+        try:
+            color_code = int(sys.argv[1])
+            result = shingou_action(color_code)
+            print(result)
+        except ValueError:
+            print("無効な色の数値です。整数を指定してください。")
 
-        return action
-    except ValueError as e:
-        print(f"エラー: {e}")
-        raise
-
-
-# テスト
-act_shingou(1)  # とまれ
-act_shingou(2)  # すすめ
-act_shingou(3)  # ちゅうい
-act_shingou(4)  # 例外発生
