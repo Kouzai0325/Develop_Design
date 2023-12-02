@@ -18,7 +18,7 @@ def act_shingou(color):
             action = Shingou.CHUUI
         else:
             raise ValueError("信号機の色に対応していません")
-
+        
         print(action.value)
 
         return action
